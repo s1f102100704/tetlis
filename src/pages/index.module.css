@@ -8,8 +8,38 @@
   padding: 0 0.5rem;
 }
 
+.fullBoard {
+  display: flex;
+  width: 360px;
+  height: 660px;
+}
+
+.boardPlus {
+  width: 300px;
+  height: 660px;
+}
+
 .gameBoard {
   width: 300px;
   height: 600px;
   background-color: black;
+}
+
+.sideFrame {
+  width: 30px;
+  height: 660px;
+  background-color: #808080;
+}
+
+.topBottomFrame {
+  display: flex;
+  width: 300px;
+  height: 30px;
+  background-color: #808080;
+}
+
+.blockstyle {
+  width: 30px;
+  height: 30px;
+  border: solid 2px white;
 }
