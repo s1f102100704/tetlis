@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import styles from '../pages/index.module.css';
 
-export const useHooks = () => {
+export const useInfo = () => {
+  const [level, setLevel] = useState(0);
   const [gameMap, setGameMap] = useState([
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -24,6 +25,7 @@ export const useHooks = () => {
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   ]);
+  //minoの形
   const minos = {
     Smino: {
       direction: {
@@ -49,6 +51,7 @@ export const useHooks = () => {
           [1, 0, 0],
         ],
       },
+      color: 'green',
     },
     Zmino: {
       direction: {
@@ -73,6 +76,7 @@ export const useHooks = () => {
           [0, 1, 0],
         ],
       },
+      color: 'red',
     },
     Omino: {
       direction: {
@@ -93,6 +97,7 @@ export const useHooks = () => {
           [0, 0],
         ],
       },
+      color: 'yellow',
     },
     Lmino: {
       direction: {
@@ -117,6 +122,7 @@ export const useHooks = () => {
           [0, 1, 0],
         ],
       },
+      color: 'oranage',
     },
     Jmino: {
       direction: {
@@ -141,6 +147,7 @@ export const useHooks = () => {
           [1, 1, 0],
         ],
       },
+      color: 'blue',
     },
     Tmino: {
       direction: {
@@ -165,6 +172,7 @@ export const useHooks = () => {
           [0, 1, 0],
         ],
       },
+      color: 'purple',
     },
     Imino: {
       direction: {
@@ -193,6 +201,8 @@ export const useHooks = () => {
           [0, 0, 0, 1],
         ],
       },
+      color: 'skyblue',
     },
   };
+  return { gameMap };
 };
