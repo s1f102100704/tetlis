@@ -26,9 +26,7 @@ const GameBoard: React.FC<Props> = (props) => {
     <div className={styles.fullBoard}>
       <div className={styles.sideFrame}>
         {blockFrame.side.map((row, y) =>
-          row.map((color, x) => (
-            <div className={styles.blockstyle} key={`${x}-${y}`} id={`${x}-${y}`} />
-          )),
+          row.map((color, x) => <div className={styles.blockstyle} key={`${x}-${y}`} />),
         )}
       </div>
       <div className={styles.boardPlus}>
@@ -39,9 +37,7 @@ const GameBoard: React.FC<Props> = (props) => {
         </div>
         <div className={styles.gameBoard}>
           {gameMap.map((row, y) =>
-            row.map((color, x) => (
-              <div className={styles.cellstyle} key={`${x}-${y}`} id={`${x}-${y}`} />
-            )),
+            row.map((color, x) => <div className={styles.cellstyle} key={`${x}-${y}`} />),
           )}
         </div>
         <div className={styles.topBottomFrame}>
@@ -53,9 +49,7 @@ const GameBoard: React.FC<Props> = (props) => {
 
       <div className={styles.sideFrame}>
         {blockFrame.side.map((row, y) =>
-          row.map((color, x) => (
-            <div className={styles.blockstyle} key={`${x}-${y}`} id={`${x}-${y}`} />
-          )),
+          row.map((color, x) => <div className={styles.blockstyle} key={`${x}-${y}`} />),
         )}
       </div>
     </div>
