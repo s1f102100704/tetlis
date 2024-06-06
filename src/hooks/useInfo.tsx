@@ -7,7 +7,7 @@ export const useInfo = () => {
 
   //minoの形
   const minos = {
-    Smino: {
+    S: {
       direction: {
         // 0,1,2,3で時計回り（0が初期状態）
         0: [
@@ -37,7 +37,7 @@ export const useInfo = () => {
       },
       color: 'green',
     },
-    Zmino: {
+    Z: {
       direction: {
         0: [
           [0, 1, 1, 0],
@@ -66,7 +66,7 @@ export const useInfo = () => {
       },
       color: 'red',
     },
-    Omino: {
+    O: {
       direction: {
         0: [
           [1, 1, 0, 0],
@@ -95,7 +95,7 @@ export const useInfo = () => {
       },
       color: 'yellow',
     },
-    Lmino: {
+    L: {
       direction: {
         0: [
           [0, 0, 1, 0],
@@ -124,7 +124,7 @@ export const useInfo = () => {
       },
       color: 'oranage',
     },
-    Jmino: {
+    J: {
       direction: {
         0: [
           [1, 0, 0, 0],
@@ -153,7 +153,7 @@ export const useInfo = () => {
       },
       color: 'blue',
     },
-    Tmino: {
+    T: {
       direction: {
         0: [
           [0, 1, 0, 0],
@@ -182,7 +182,7 @@ export const useInfo = () => {
       },
       color: 'purple',
     },
-    Imino: {
+    I: {
       direction: {
         0: [
           [1, 1, 1, 1],
@@ -212,8 +212,31 @@ export const useInfo = () => {
       color: 'skyblue',
     },
   };
+  const getRandomIntegers =() =>{
+    const S = minos.S,Z = minos.Z,O = minos.L,J =minos.J,T =minos.T,I =minos.I
+    const integers = [S, Z, O, J, T, I]
+    const result:typeof minos.S[] =[];
+    while (integers.length > 0) {
+        const randomIndex = Math.floor(Math.random() * integers.length);
+        const randomMino = integers.splice(randomIndex, 1)[0];
+        result.push(randomMino);
+    }
+
+    return result;
+  }
+  const nextMino = getRandomIntegers();
+  const createSevenMinos =()=>{
+    
+    if(nextMino.length  <= 7){
+      for(let i =0;i<7;i++){
+        nextMino.push(getRandomIntegers()[i]) 
+      }
+    }
+    
+  }
+  createSevenMinos();
   const startPlay = () => {
     setIsPlay(true);
   };
-  return { isPlay, setIsPlay, level, setLevel, minos, startPlay };
+  return { isPlay, setIsPlay, level, setLevel, minos, startPlay,nextMino};
 };
