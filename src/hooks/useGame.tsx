@@ -3,7 +3,7 @@ import { useInfo } from './useInfo';
 
 export const useGame = () => {
   const { isPlay, setIsPlay, level, setLevel, minos } = useInfo();
-  const [gameMap, setGameMap] = useState([
+  const [minoMap, setMinoMap] = useState([
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -26,5 +26,5 @@ export const useGame = () => {
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   ]);
 
-  return { gameMap };
+  return { minoMap };
 };

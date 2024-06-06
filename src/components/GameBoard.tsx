@@ -1,14 +1,36 @@
 import React from 'react';
 import styles from '../pages/index.module.css';
 interface Props {
-  gameMap: number[][];
+  minoMap: number[][];
 }
 const GameBoard: React.FC<Props> = (props) => {
-  const { gameMap } = props;
+  const { minoMap } = props;
   interface blockFrame {
     side: number[][];
     topBottom: number[];
   }
+  const board = [
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  ];
   const blockFrame: blockFrame = {
     side: [],
     topBottom: [],
@@ -36,7 +58,7 @@ const GameBoard: React.FC<Props> = (props) => {
           ))}
         </div>
         <div className={styles.gameBoard}>
-          {gameMap.map((row, y) =>
+          {board.map((row, y) =>
             row.map((color, x) => <div className={styles.cellstyle} key={`${x}-${y}`} />),
           )}
         </div>

@@ -5,13 +5,13 @@ import NextMino from '../components/NextMino';
 import { useInfo } from '../hooks/useInfo';
 import { useGame } from '../hooks/useGame';
 const Home = () => {
-  const { gameMap } = useGame();
+  const { minoMap } = useGame();
   const { startPlay } = useInfo();
   return (
     <div className={styles.container}>
       <main className={styles.main}>
         <GameInfo startPlay={startPlay} />
-        <GameBoard gameMap={gameMap} />
+        <GameBoard minoMap={minoMap} />
         <NextMino />
       </main>
     </div>
