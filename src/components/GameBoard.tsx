@@ -90,7 +90,7 @@ const GameBoard: React.FC<Props> = (props) => {
       blockFrame.topBottom.push(0);
     }
   };
-  console.log(board);
+  console.log(minoMap);
   makeFrame();
 
   return (
@@ -107,16 +107,26 @@ const GameBoard: React.FC<Props> = (props) => {
           ))}
         </div>
         <div className={styles.gameBoard}>
-          {board.map((row, y) =>
+          {minoMap.map((row, y) =>
             row.map((color, x) => (
               <div className={styles.cellstyle} key={`${x}-${y}`}>
-                {color === 1 && <div style={{ background: 'green', width: 30, height: 30 }} />}
-                {color === 2 && <div style={{ background: 'red', width: 30, height: 30 }} />}
-                {color === 3 && <div style={{ background: 'yellow', width: 30, height: 30 }} />}
-                {color === 4 && <div style={{ background: 'orange', width: 30, height: 30 }} />}
-                {color === 5 && <div style={{ background: 'blue', width: 30, height: 30 }} />}
-                {color === 6 && <div style={{ background: 'purple', width: 30, height: 30 }} />}
-                {color === 7 && <div style={{ background: 'skyblue', width: 30, height: 30 }} />}
+                {color === 1 && (
+                  <div className={styles.minoStyle} style={{ background: 'green' }} />
+                )}
+                {color === 2 && <div className={styles.minoStyle} style={{ background: 'red' }} />}
+                {color === 3 && (
+                  <div className={styles.minoStyle} style={{ background: 'yellow' }} />
+                )}
+                {color === 4 && (
+                  <div className={styles.minoStyle} style={{ background: 'orange' }} />
+                )}
+                {color === 5 && <div className={styles.minoStyle} style={{ background: 'blue' }} />}
+                {color === 6 && (
+                  <div className={styles.minoStyle} style={{ background: 'purple' }} />
+                )}
+                {color === 7 && (
+                  <div className={styles.minoStyle} style={{ background: 'skyblue' }} />
+                )}
               </div>
             )),
           )}

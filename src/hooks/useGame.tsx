@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { use, useState } from 'react';
+import { useEffect } from 'react';
 import { useInfo } from './useInfo';
 
 export const useGame = () => {
@@ -25,6 +26,11 @@ export const useGame = () => {
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   ]);
+  const startPlay = () => {
+    setIsPlay(true);
+    outPutMino();
+  };
+  const cloneMinoMap = structuredClone(minoMap);
   const board = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -49,12 +55,14 @@ export const useGame = () => {
   ];
 
   const outPutMino = () => {
+    console.log('a');
     for (let i = 0; i < 4; i++) {
       for (let k = 3; k < 7; k++) {
-        board[i][k] = nextMino[0].direction[0][i][k - 3];
+        cloneMinoMap[i][k] = nextMino[0].direction[0][i][k - 3];
       }
     }
+    setMinoMap(cloneMinoMap);
   };
-  outPutMino();
-  return { minoMap, board };
+  // useEffect;
+  return { minoMap, board, startPlay };
 };
