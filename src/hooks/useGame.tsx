@@ -59,19 +59,22 @@ export const useGame = () => {
 
   const outPutMino = () => {
     cloneNextMino = createSevenMinos();
+    console.log('cloneNextMino', cloneNextMino[0]);
     for (let i = 0; i < 4; i++) {
       for (let k = 3; k < 7; k++) {
         cloneMinoMap[i][k] = cloneNextMino[0].direction[0][i][k - 3];
       }
     }
     setMinoMap(cloneMinoMap);
+    setNextMino(cloneNextMino);
   };
 
   useEffect(() => {
     const dropMino = () => {
       for (let i = 0; i < 4; i++) {
         for (let k = 3; k < 7; k++) {
-          cloneMinoMap[i + count][k] = cloneNextMino[0].direction[0][i][k - 3];
+          cloneMinoMap[i + count + 1][k] = cloneNextMino[0].direction[0][i][k - 3];
+          cloneMinoMap[count][k] = 0;
         }
       }
       setCount((prevCount) => prevCount + 1);

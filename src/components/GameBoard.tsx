@@ -90,7 +90,6 @@ const GameBoard: React.FC<Props> = (props) => {
       blockFrame.topBottom.push(0);
     }
   };
-  console.log(minoMap);
   makeFrame();
 
   return (
