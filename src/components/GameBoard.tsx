@@ -110,12 +110,13 @@ const GameBoard: React.FC<Props> = (props) => {
           {board.map((row, y) =>
             row.map((color, x) => (
               <div className={styles.cellstyle} key={`${x}-${y}`}>
-                {color === 1 && (
-                  <div
-                    className={styles.stonestyle}
-                    style={{ background: 'orange', width: 20, height: 20 }}
-                  />
-                )}
+                {color === 1 && <div style={{ background: 'green', width: 30, height: 30 }} />}
+                {color === 2 && <div style={{ background: 'red', width: 30, height: 30 }} />}
+                {color === 3 && <div style={{ background: 'yellow', width: 30, height: 30 }} />}
+                {color === 4 && <div style={{ background: 'orange', width: 30, height: 30 }} />}
+                {color === 5 && <div style={{ background: 'blue', width: 30, height: 30 }} />}
+                {color === 6 && <div style={{ background: 'purple', width: 30, height: 30 }} />}
+                {color === 7 && <div style={{ background: 'skyblue', width: 30, height: 30 }} />}
               </div>
             )),
           )}
