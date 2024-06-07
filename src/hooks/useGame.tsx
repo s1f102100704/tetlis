@@ -27,8 +27,21 @@ export const useGame = () => {
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   ]);
-  const [nextMino, setNextMino] = useState([minos.S, minos.L, minos.J, minos.Z, minos.T, minos.I]);
-  let cloneNextMino = { ...nextMino };
+  const [nextMinos, setNextMinos] = useState([
+    minos.S,
+    minos.L,
+    minos.J,
+    minos.Z,
+    minos.T,
+    minos.I,
+  ]);
+  type MinoType = {
+    direction: { 0: number[][]; 1: number[][]; 2: number[][]; 3: number[][] };
+    color: string;
+  };
+  const [currentMino, setCurrentMino] = useState<MinoType>(minos.S);
+
+  let cloneNextMinos = { ...nextMinos };
   const startPlay = () => {
     setIsPlay(true);
     outPutMino();
@@ -58,23 +71,29 @@ export const useGame = () => {
   ];
 
   const outPutMino = () => {
-    cloneNextMino = createSevenMinos();
-    console.log('cloneNextMino', cloneNextMino[0]);
+    cloneNextMinos = createSevenMinos();
+    console.log(minos.S);
     for (let i = 0; i < 4; i++) {
       for (let k = 3; k < 7; k++) {
-        cloneMinoMap[i][k] = cloneNextMino[0].direction[0][i][k - 3];
+        cloneMinoMap[i][k] = cloneNextMinos[0].direction[0][i][k - 3];
       }
     }
     setMinoMap(cloneMinoMap);
-    setNextMino(cloneNextMino);
+    setNextMinos(cloneNextMinos);
+    const cMino = cloneNextMinos.shift();
+    if (cMino !== undefined) {
+      setCurrentMino(cMino);
+    }
   };
 
   useEffect(() => {
     const dropMino = () => {
       for (let i = 0; i < 4; i++) {
         for (let k = 3; k < 7; k++) {
-          cloneMinoMap[i + count + 1][k] = cloneNextMino[0].direction[0][i][k - 3];
-          cloneMinoMap[count][k] = 0;
+          if (i + count + 1 !== 20) {
+            cloneMinoMap[i + count + 1][k] = nextMinos[0].direction[0][i][k - 3];
+            cloneMinoMap[count][k] = 0;
+          }
         }
       }
       setCount((prevCount) => prevCount + 1);
@@ -87,6 +106,6 @@ export const useGame = () => {
         clearInterval(interval); // 間隔のクリア
       };
     }
-  });
+  }, [cloneMinoMap, cloneNextMinos, count, setCount, isPlay, nextMinos]);
   return { minoMap, board, startPlay };
 };
