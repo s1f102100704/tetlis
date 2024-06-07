@@ -4,6 +4,7 @@ import styles from '../pages/index.module.css';
 export const useInfo = () => {
   const [isPlay, setIsPlay] = useState(false);
   const [level, setLevel] = useState(0);
+  const [count, setCount] = useState(0);
 
   //minoの形
   const minos = {
@@ -229,17 +230,16 @@ export const useInfo = () => {
 
     return result;
   };
-  const nextMino = getRandomIntegers();
+
   const createSevenMinos = () => {
+    const nextMino = getRandomIntegers();
     if (nextMino.length <= 7) {
       for (let i = 0; i < 7; i++) {
         nextMino.push(getRandomIntegers()[i]);
       }
     }
+    return nextMino;
   };
-  createSevenMinos();
-  const startPlay = () => {
-    setIsPlay(true);
-  };
-  return { isPlay, setIsPlay, level, setLevel, minos, startPlay, nextMino };
+
+  return { isPlay, setIsPlay, level, setLevel, minos, createSevenMinos, count, setCount };
 };

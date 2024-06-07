@@ -3,7 +3,8 @@ import { useEffect } from 'react';
 import { useInfo } from './useInfo';
 
 export const useGame = () => {
-  const { isPlay, setIsPlay, level, setLevel, minos, nextMino } = useInfo();
+  const { isPlay, setIsPlay, level, setLevel, minos, count, setCount, createSevenMinos } =
+    useInfo();
   const [minoMap, setMinoMap] = useState([
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -26,6 +27,8 @@ export const useGame = () => {
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   ]);
+  const [nextMino, setNextMino] = useState([minos.S, minos.L, minos.J, minos.Z, minos.T, minos.I]);
+  let cloneNextMino = { ...nextMino };
   const startPlay = () => {
     setIsPlay(true);
     outPutMino();
@@ -55,14 +58,32 @@ export const useGame = () => {
   ];
 
   const outPutMino = () => {
-    console.log('a');
+    cloneNextMino = createSevenMinos();
     for (let i = 0; i < 4; i++) {
       for (let k = 3; k < 7; k++) {
-        cloneMinoMap[i][k] = nextMino[0].direction[0][i][k - 3];
+        cloneMinoMap[i][k] = cloneNextMino[0].direction[0][i][k - 3];
       }
     }
     setMinoMap(cloneMinoMap);
   };
-  // useEffect;
+
+  useEffect(() => {
+    const dropMino = () => {
+      for (let i = 0; i < 4; i++) {
+        for (let k = 3; k < 7; k++) {
+          cloneMinoMap[i + count][k] = cloneNextMino[0].direction[0][i][k - 3];
+        }
+      }
+      setCount((prevCount) => prevCount + 1);
+      setMinoMap(cloneMinoMap);
+    };
+    if (isPlay) {
+      const interval = setInterval(dropMino, 1000);
+
+      return () => {
+        clearInterval(interval); // 間隔のクリア
+      };
+    }
+  });
   return { minoMap, board, startPlay };
 };
