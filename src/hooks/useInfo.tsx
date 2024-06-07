@@ -213,6 +213,15 @@ export const useInfo = () => {
       color: 'skyblue',
     },
   };
+  const [nextMinos, setNextMinos] = useState([
+    minos.S,
+    minos.L,
+    minos.J,
+    minos.Z,
+    minos.T,
+    minos.I,
+  ]);
+
   const getRandomIntegers = () => {
     const S = minos.S,
       Z = minos.Z,
@@ -241,5 +250,16 @@ export const useInfo = () => {
     return nextMino;
   };
 
-  return { isPlay, setIsPlay, level, setLevel, minos, createSevenMinos, count, setCount };
+  return {
+    isPlay,
+    setIsPlay,
+    level,
+    setLevel,
+    minos,
+    createSevenMinos,
+    count,
+    setCount,
+    nextMinos,
+    setNextMinos,
+  };
 };
