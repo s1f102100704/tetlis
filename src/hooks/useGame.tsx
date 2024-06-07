@@ -43,8 +43,8 @@ export const useGame = () => {
     color: string;
   };
   const [currentMino, setCurrentMino] = useState<MinoType>(minos.S);
+  let cloneNextMinos = structuredClone(nextMinos);
 
-  let cloneNextMinos = { ...nextMinos };
   const startPlay = () => {
     setIsPlay(true);
     cloneNextMinos = createSevenMinos();
@@ -93,10 +93,15 @@ export const useGame = () => {
     const dropMino = () => {
       for (let i = 0; i < 4; i++) {
         for (let k = 3; k < 7; k++) {
-          if (i + count + 1 !== 19) {
+          if (i + count + 1 !== 20) {
             cloneMinoMap[i + count + 1][k] = currentMino.direction[0][i][k - 3];
+            if (count === 1) {
+              cloneMinoMap[0][k] = 0;
+            }
             cloneMinoMap[count][k] = 0;
-          } else {
+          }
+          if (i + count + 1 === 20) {
+            console.table(cloneMinoMap);
             setCount(0);
             outPutMino();
           }

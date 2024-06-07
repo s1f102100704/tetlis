@@ -221,6 +221,7 @@ export const useInfo = () => {
     minos.T,
     minos.I,
   ]);
+  let cloneNextMino = { ...nextMinos };
 
   const getRandomIntegers = () => {
     const S = minos.S,
@@ -241,13 +242,14 @@ export const useInfo = () => {
   };
 
   const createSevenMinos = () => {
-    const nextMino = getRandomIntegers();
-    if (nextMino.length <= 7) {
+    cloneNextMino = getRandomIntegers();
+    if (cloneNextMino.length <= 7) {
       for (let i = 0; i < 7; i++) {
-        nextMino.push(getRandomIntegers()[i]);
+        cloneNextMino.push(getRandomIntegers()[i]);
       }
     }
-    return nextMino;
+    setNextMinos(cloneNextMino);
+    return cloneNextMino;
   };
 
   return {
