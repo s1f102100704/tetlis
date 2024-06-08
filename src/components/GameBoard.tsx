@@ -91,7 +91,7 @@ const GameBoard: React.FC<Props> = (props) => {
     }
   };
   makeFrame();
-
+  console.table(minoMap);
   return (
     <div className={styles.fullBoard}>
       <div className={styles.sideFrame}>
