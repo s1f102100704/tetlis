@@ -75,10 +75,14 @@ export const useGame = () => {
   ];
 
   const outPutMino = useCallback(() => {
+    const minoWidth = currentMino.direction[0][0].length;
+    const minoHeight = currentMino.direction[0].length;
+    console.log(currentMino);
+    console.log('width', minoWidth, 'height', minoHeight);
     const cMino = Array.isArray(cloneNextMinos) ? cloneNextMinos.shift() : undefined;
     if (cMino !== undefined) {
-      for (let i = 0; i < 4; i++) {
-        for (let k = 3; k < 7; k++) {
+      for (let i = 0; i < minoHeight; i++) {
+        for (let k = 3; k < minoWidth + 3; k++) {
           cloneMinoMap[i][k] = cMino.direction[0][i][k - 3];
         }
       }
@@ -87,14 +91,16 @@ export const useGame = () => {
 
       setCurrentMino(cMino);
     }
-  }, [cloneMinoMap, cloneNextMinos, setNextMinos]);
+  }, [cloneMinoMap, cloneNextMinos, setNextMinos, currentMino.direction]);
   useEffect(() => {
     const dropMino = () => {
-      for (let i = 0; i < 4; i++) {
-        for (let k = 3; k < 7; k++) {
-          if (count <= 15) {
+      const minoWidth = currentMino.direction[0][0].length;
+      const minoHeight = currentMino.direction[0].length;
+      for (let i = 0; i < minoHeight; i++) {
+        for (let k = 3; k < minoWidth + 3; k++) {
+          if (count <= 19 - minoHeight) {
             cloneMinoMap[i + count + 1][k] = currentMino.direction[0][i][k - 3];
-            console.log(i + count + 1);
+
             if (count === 1) {
               cloneMinoMap[0][k] = 0;
             }
@@ -102,7 +108,7 @@ export const useGame = () => {
           }
         }
       }
-      if (count === 16) {
+      if (count === 20 - minoHeight) {
         setCount(0);
         outPutMino();
         setMinoMap(cloneMinoMap);
