@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import styles from '../pages/index.module.css';
 
 export const useInfo = () => {
   const [isPlay, setIsPlay] = useState(false);
