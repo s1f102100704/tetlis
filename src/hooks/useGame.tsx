@@ -37,7 +37,7 @@ export const useGame = () => {
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   ]);
-  const [besideCount, setaBesideCount] = useState(0);
+  const [besideCount, setBesideCount] = useState(0);
   type MinoType = {
     direction: { 0: number[][]; 1: number[][]; 2: number[][]; 3: number[][] };
     color: string;
@@ -75,17 +75,7 @@ export const useGame = () => {
   ];
   const cMino = Array.isArray(cloneNextMinos) ? cloneNextMinos.shift() : undefined;
   const outPutMino = useCallback(() => {
-    // const minoWidth = cMino?.direction?.[0]?.[0]?.length;
-    // const minoHeight = cMino?.direction[0].length;
-
-    // if (cMino !== undefined && minoHeight !== undefined && minoWidth !== undefined) {
-    //   for (let i = 0; i < minoHeight; i++) {
-    //     for (let k = 3; k < minoWidth + 3; k++) {
-    //       cloneMinoMap[i][k] = cMino.direction[0][i][k - 3];
-    //     }
-    //   }
-    // setMinoMap(cloneMinoMap);
-    // }
+    setBesideCount(0);
     if (cMino !== undefined) {
       setNextMinos(cloneNextMinos);
       setCurrentMino(cMino);
@@ -174,11 +164,11 @@ export const useGame = () => {
         case 'ArrowLeft':
           // 左キーが押された時の処理
 
-          setaBesideCount(besideCount - 1);
+          setBesideCount(besideCount - 1);
           break;
         case 'ArrowRight':
           // 右キーが押された時の処理
-          setaBesideCount(besideCount + 1);
+          setBesideCount(besideCount + 1);
           break;
       }
     };
