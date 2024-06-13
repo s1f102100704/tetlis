@@ -1,78 +1,78 @@
 import React from 'react';
 import styles from '../pages/index.module.css';
-interface Minos {
-  S: {
-    direction: {
-      0: number[][];
-      1: number[][];
-      2: number[][];
-      3: number[][];
-    };
-    color: string;
-  };
-  Z: {
-    direction: {
-      0: number[][];
-      1: number[][];
-      2: number[][];
-      3: number[][];
-    };
-    color: string;
-  };
-  O: {
-    direction: {
-      0: number[][];
-      1: number[][];
-      2: number[][];
-      3: number[][];
-    };
-    color: string;
-  };
-  L: {
-    direction: {
-      0: number[][];
-      1: number[][];
-      2: number[][];
-      3: number[][];
-    };
-    color: string;
-  };
-  J: {
-    direction: {
-      0: number[][];
-      1: number[][];
-      2: number[][];
-      3: number[][];
-    };
-    color: string;
-  };
-  T: {
-    direction: {
-      0: number[][];
-      1: number[][];
-      2: number[][];
-      3: number[][];
-    };
-    color: string;
-  };
-  I: {
-    direction: {
-      0: number[][];
-      1: number[][];
-      2: number[][];
-      3: number[][];
-    };
-    color: string;
-  };
-}
+// interface Minos {
+//   S: {
+//     direction: {
+//       0: number[][];
+//       1: number[][];
+//       2: number[][];
+//       3: number[][];
+//     };
+//     color: string;
+//   };
+//   Z: {
+//     direction: {
+//       0: number[][];
+//       1: number[][];
+//       2: number[][];
+//       3: number[][];
+//     };
+//     color: string;
+//   };
+//   O: {
+//     direction: {
+//       0: number[][];
+//       1: number[][];
+//       2: number[][];
+//       3: number[][];
+//     };
+//     color: string;
+//   };
+//   L: {
+//     direction: {
+//       0: number[][];
+//       1: number[][];
+//       2: number[][];
+//       3: number[][];
+//     };
+//     color: string;
+//   };
+//   J: {
+//     direction: {
+//       0: number[][];
+//       1: number[][];
+//       2: number[][];
+//       3: number[][];
+//     };
+//     color: string;
+//   };
+//   T: {
+//     direction: {
+//       0: number[][];
+//       1: number[][];
+//       2: number[][];
+//       3: number[][];
+//     };
+//     color: string;
+//   };
+//   I: {
+//     direction: {
+//       0: number[][];
+//       1: number[][];
+//       2: number[][];
+//       3: number[][];
+//     };
+//     color: string;
+//   };
+// }
 interface Props {
   minoMap: number[][];
-  isPlay: boolean;
-  minos: Minos;
-  board: number[][];
+  // isPlay: boolean;
+  // minos: Minos;
+  // board: number[][];
 }
 const GameBoard: React.FC<Props> = (props) => {
-  const { minoMap, isPlay, minos, board } = props;
+  const { minoMap } = props;
   interface blockFrame {
     side: number[][];
     topBottom: number[];
@@ -102,7 +102,7 @@ const GameBoard: React.FC<Props> = (props) => {
       <div className={styles.boardPlus}>
         <div className={styles.topBottomFrame}>
           {blockFrame.topBottom.map(() => (
-            <div className={styles.blockstyle} key="" />
+            <div className={styles.blockstyle} key="q" />
           ))}
         </div>
         <div className={styles.gameBoard}>
@@ -132,7 +132,7 @@ const GameBoard: React.FC<Props> = (props) => {
         </div>
         <div className={styles.topBottomFrame}>
           {blockFrame.topBottom.map(() => (
-            <div className={styles.blockstyle} key="" />
+            <div className={styles.blockstyle} key="c" />
           ))}
         </div>
       </div>

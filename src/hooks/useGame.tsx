@@ -6,8 +6,8 @@ export const useGame = () => {
   const {
     isPlay,
     setIsPlay,
-    level,
-    setLevel,
+    // level,
+    // setLevel,
     minos,
     count,
     setCount,
@@ -86,7 +86,6 @@ export const useGame = () => {
       if (count !== 0) {
         for (let j = 0; j <= 9; j++) {
           cloneMinoMap[count - 1][j] = 0;
-          cloneMinoMap[count - 1][j] = 0;
         }
       }
 
@@ -95,33 +94,56 @@ export const useGame = () => {
       // }
     };
     const dropMino = () => {
+      console.log(besideCount);
       const minoWidth = cMino?.direction?.[0]?.[0]?.length;
       const minoHeight = cMino?.direction[0].length;
 
       console.log('minoheight', minoHeight);
       if (cMino !== undefined && minoHeight !== undefined && minoWidth !== undefined) {
-        for (let i = 0; i < minoHeight; i++) {
-          for (let k = 3; k < minoWidth + 4; k++) {
-            if (count <= 20 - minoHeight) {
-              if (
-                count + minoHeight <= 19 &&
-                cloneMinoMap[count + minoHeight][k + besideCount] !== 0 &&
-                i === minoHeight - 1 &&
-                k === minoWidth + 3
-              ) {
-                setCount(0);
-                outPutMino();
-                setMinoMap(cloneMinoMap);
-                return 0;
-              } else {
-                cloneMinoMap[i + count][k + besideCount] = cMino.direction[0][i][k - 3];
+        if (count <= 20 - minoHeight) {
+          for (let i = 0; i < minoWidth; i++) {
+            if (
+              count + minoHeight <= 19 &&
+              cloneMinoMap[count + minoHeight][3 + besideCount + i] !== 0 &&
+              cloneMinoMap[count + minoHeight - 1][3 + besideCount + i] !== 0
+            ) {
+              setCount(0);
+              outPutMino();
+              setMinoMap(cloneMinoMap);
+              break;
+            } else {
+              const box = [];
+              let minoNumber = 0;
+              for (let k = 0; k < minoHeight; k++) {
+                if (count + 1 !== 20 && cloneMinoMap[count + 1][k] !== 0) {
+                  box.push(k);
+                  minoNumber = cloneMinoMap[count + 1][k];
+                }
               }
-              //minoが下に下がったら、そのまえにあった minoを削除する
-
-              clearMino(count);
+              if (minoHeight === 2) {
+                cloneMinoMap[count + 1].splice(
+                  3 + besideCount,
+                  minoWidth + besideCount,
+                  ...cMino.direction[0][1],
+                );
+              }
+              cloneMinoMap[count].splice(
+                3 + besideCount,
+                minoWidth + besideCount,
+                ...cMino.direction[0][0],
+              );
+              if (box.length !== 0) {
+                for (let j = 0; j < box.length; j++) {
+                  cloneMinoMap[count + 1][j] = minoNumber;
+                }
+              }
             }
           }
+          clearMino(count);
+
+          //minoが下に下がったら、そのまえにあった minoを削除する
         }
+
         //minoが最下層についたら
         if (count === 20 - minoHeight) {
           setCount(0);
